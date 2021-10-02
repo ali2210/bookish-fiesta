@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package serialization;
+
+option go_package = "github.com/ali2210/bookish-fiesta/serialization";
+
+
+message Book {
+    string bookID = 1;
+    string bookTitle =2;
+    string bookIsbn =3;
+}
+
+message StackedBook{
+    repeated Book books = 1;
+}
+
+enum Results {
+    Ok = 0;
+    Err = 1;
+}
+
+message Books{
+    Book publish = 1;
+    Results result = 2;
+}
+
+service LibraryServiceRPC{
+    rpc AddBook (Book) returns (Books);
+    rpc SearchBook (Book) returns (Books);
+    rpc DisplayBook (Book) returns (StackedBook);
+    rpc Delete (Book) returns (Books);
+}
