@@ -5,14 +5,23 @@ package serialization;
 option go_package = "github.com/ali2210/bookish-fiesta/serialization";
 
 
+enum Stacking {
+    Up = 0;
+    Down = 1;
+    On = 2;
+}
+
 message Book {
     string bookID = 1;
     string bookTitle =2;
     string bookIsbn =3;
+    string bookAuthor =4;
+    string bookPublishDate =5;    
 }
 
+
 message StackedBook{
-    repeated Book books = 1;
+    Book stackedover = 1;
 }
 
 enum Results {
@@ -23,11 +32,15 @@ enum Results {
 message Books{
     Book publish = 1;
     Results result = 2;
+    Stacking Operation = 3;
 }
+
+message EmptyRequest {}
 
 service LibraryServiceRPC{
     rpc AddBook (Book) returns (Books);
     rpc SearchBook (Book) returns (Books);
-    rpc DisplayBook (Book) returns (StackedBook);
+    rpc DisplayBook (EmptyRequest) returns (StackedBook);
     rpc Delete (Book) returns (Books);
+    rpc SetStackedBook (Book) returns (StackedBook);
 }
