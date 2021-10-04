@@ -3,8 +3,8 @@ Lets play around with Kubertnees
 
 
          ### Directory
-               /lib
-               /serialization
+               /lib (interface)
+               /serialization (proto)
                
          ### Protocol Buffers 
                  1. Enums
@@ -13,3 +13,6 @@ Lets play around with Kubertnees
          ### Specification
                 1. Go(1.16.6)
                 2. Linux(18.04+)       
+         ### Docker build configuration
+         
+                docker run -it ali2210/fiesta
